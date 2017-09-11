@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hangman Game</title>
+
+	<!--Link to Google font-->
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Baloo+Tammudu|Shadows+Into+Light" rel="stylesheet">
+	<!--
+	font-family: 'Baloo Tammudu', cursive;
+	font-family: 'Shadows Into Light', cursive;
+	font-family: 'Amatic SC', cursive;
+	-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<!--Link to javascript-->
+	　<script type="text/javascript" src="assets/javascript/game.js"></script>
+</head>
+
+<body">
+<!--<body id='foo' onkeyup="dostuff(event), show_CW(event)">-->
+
+<div class="header">
+	<h1>HANGMAN</h1>
+</div>
+
+<div class="subject">
+	<h2><span id="ansSubject"></span></h2>
+</div>
+
+<div class="container">
+
+	<!--Main-->
+	<div class="row">
+		<div class="col-xs-0 col-ms-0 col-md-1 col-lg-1">
+		</div>
+		
+		<div class="col-xs-12 col-ms-12 col-md-5 col-lg-5">
+			<div class="leftWindow">
+				<!--Display photo by Javascpit-->
+				<!--<div class="row">
+					<div class="col-xs-12 col-ms-12 col-md-12 col-lg-12">-->
+					<img id="ansImg" src="assets/images/movie.jpg">
+					<!--</div>
+				</div>-->
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-ms-12 col-md-5 col-lg-5">
+			<div class="rightWindow">
+				<p>PRESS ANY KEY TO GET STARTED!</p>
+
+				<!--Display game result by Javascpit *Use array-->
+				<p><span id="gameResult"></span></p>
+				<p><span id="numOfWins"></span></p>
+
+				<p>Current Word</p>
+
+				<!--<p><script>show_CW();</script></p>-->
+				<p><span id="currentWord"></span></p>
+
+
+
+				<p>NUMBER OF GUESSES REMAINING</p>
+
+				<!--Display guessed nubmer by Javascpit-->
+				<!--<p><script>remaining_number();</script></p>-->
+				<p><span id="guessesRemain"></span></p>
+
+				<p>LETTERS ALREADY GUESSED</p>
+				<p><span id="alreadyGuessed"></span></p>
+
+				<!--Display guessed keys by Javascpit-->
+				<p><script></script></p>
+
+			</div>
+		</div>
+		
+		<div class="col-xs-0 col-ms-0 col-md-1 col-lg-1">
+		</div>
+
+	</div>
+
+</div>
+
+</body>
+</html>
