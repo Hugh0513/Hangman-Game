@@ -1,6 +1,6 @@
 //var ans_array = ["movie", "hangover", "dark knight", "silver lining playbook"]
-var ans_array = ["HANGOVER", "GODZILLA", "DARK KNIGHT", "SILVER LINING PLAYBOOK"];
-var ans_subject = ["HANGOVER BY TEDD PHILLIPS", "GODZILLA BY HIDEAKI ANNO", "DARK KNIGHT BY CHRISTOPHER NOLAN", "SILVER LINING PLAYBOOK BY DAVID O. RUSSELL"];
+var ans_array = ["HANGOVER", "GODZILLA", "DARK KNIGHT", "SILVER LININGS PLAYBOOK"];
+var ans_subject = ["HANGOVER BY TEDD PHILLIPS", "GODZILLA BY HIDEAKI ANNO", "DARK KNIGHT BY CHRISTOPHER NOLAN", "SILVER LININGS PLAYBOOK BY DAVID O. RUSSELL"];
 
 var img = [];
 img[0] = new Image();
@@ -10,13 +10,13 @@ img[1].src = "assets/images/godzilla.jpg";
 img[2] = new Image();
 img[2].src = "assets/images/darkknight.jpg";
 img[3] = new Image();
-img[3].src = "assets/images/silverliningplaybook.jpg";
+img[3].src = "assets/images/silverliningsplaybook.jpg";
 
-var num = 0;
-var numOfWins = 0;
+var num = 0; // current position in array
+var numOfWins = 0; // numnber of wins
 
-var current_letters = [];
-var guessed_letters = [];
+var currentWord = [];
+var guessedLetters = [];
 var guessed_counter = 0;
 var guesses_limit = 13;
 var endFlg = false;
@@ -25,18 +25,19 @@ var ansSplit = ans_array[num].split("");
 
 for (var i = 0; i < ans_array[num].length; i++) {
 	if ( ansSplit[i] === " ") {
-		current_letters[i] = " ";
+		currentWord[i] = " ";
 	}
 	else {
-		current_letters[i] = "_";
+		currentWord[i] = "_";
 	}
 }	
+
 window.onload = function()
 {
 	// To display Current Word
 	var letters = "";
-	for (var i = 0; i < current_letters.length; i++)  {
-		letters += current_letters[i];
+	for (var i = 0; i < currentWord.length; i++)  {
+		letters += currentWord[i];
 	}
 
 	// Display
@@ -55,40 +56,33 @@ document.onkeyup = function(event) {
 	// Check if the letter exists in the answer
 	for (var i = 0; i < ansSplit.length; i++) {
 		if (letter === ansSplit[i]) {
-			console.log(i);
-			current_letters[i] = ansSplit[i];
-			console.log(current_letters);
+			currentWord[i] = ansSplit[i];
 			letterExist = true;
 		}
 	}	
 
-	console.log('aa:' + current_letters);
-	console.log(letterExist);
-	console.log(letterGuessed);
-
 	// input letter doesn't exist in the answer
 	if (letterExist === false) {
 		// check if the letter exists in the letters already guessed
-		for (var i = 0; i < guessed_letters.length; i++){
-			if (letter === guessed_letters[i]) {
+		for (var i = 0; i < guessedLetters.length; i++){
+			if (letter === guessedLetters[i]) {
 				letterGuessed = true;
 				break;
 			}
 		}
-		console.log('i=' + i);
 
 		// if input letter doesn't exist in the letters already guessed,
 		// add to the letters already guessed
 		if (letterGuessed === false && letterExist === false) {
-			guessed_letters.push(letter);
+			guessedLetters.push(letter);
 			guessed_counter = guessed_counter + 1;
 		}
 	}
 	
 	// To display Current Word
 	var letters = "";
-	for (var i = 0; i < current_letters.length; i++)  {
-		letters += current_letters[i];
+	for (var i = 0; i < currentWord.length; i++)  {
+		letters += currentWord[i];
 	}
 
 	// Display
@@ -99,7 +93,7 @@ document.onkeyup = function(event) {
 	elem.innerText = guesses_limit - guessed_counter;
 
 	var elem = document.getElementById('alreadyGuessed');
-	elem.innerText = guessed_letters;   
+	elem.innerText = guessedLetters;   
 
 	//var matchAnswer = false;
 	console.log('guess:' + letters);
@@ -138,8 +132,8 @@ document.onkeyup = function(event) {
 		num++;
 
 		if (num < ans_array.length) {
-			current_letters = [];
-			guessed_letters = [];
+			currentWord = [];
+			guessedLetters = [];
 			guessed_counter = 0;
 			guesses_limit = 13;
 			endFlg = false;
@@ -148,16 +142,16 @@ document.onkeyup = function(event) {
 
 			for (var i = 0; i < ans_array[num].length; i++) {
 				if ( ansSplit[i] === " ") {
-					current_letters[i] = " ";
+					currentWord[i] = " ";
 				}
 				else {
-					current_letters[i] = "_";
+					currentWord[i] = "_";
 				}
 			}
 				
 			var letters = "";
-			for (var i = 0; i < current_letters.length; i++)  {
-				letters += current_letters[i];
+			for (var i = 0; i < currentWord.length; i++)  {
+				letters += currentWord[i];
 			}
 			var elem = document.getElementById('currentWord');
 			elem.innerText = letters;   
