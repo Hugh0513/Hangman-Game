@@ -12,6 +12,21 @@ img[2].src = "assets/images/darkknight.jpg";
 img[3] = new Image();
 img[3].src = "assets/images/silverliningsplaybook.jpg";
 
+//var snd = new Audio();
+//snd.loop = true;
+//snd.volume = 0.5;
+//snd.src = "assets/audio/soundsofcinema.m4a";
+
+var m4a = [];
+m4a[0] = new Audio("assets/audio/hangover.m4a");
+//m4a[0].src = "assets/audio/hangover.m4a";
+m4a[1] = new Audio("assets/audio/godzilla.m4a");
+//m4a[1].src = "assets/audio/godzilla.m4a";
+m4a[2] = new Audio("assets/audio/darkknight.m4a");
+//m4a[2].src = "assets/audio/darkknight.m4a";
+m4a[3] = new Audio("assets/audio/silverliningsplaybook.m4a");
+//m4a[3].src = "assets/audio/silverliningsplaybook.m4a";
+
 var num = 0; // current position in array
 var numOfWins = 0; // numnber of wins
 
@@ -41,8 +56,14 @@ window.onload = function()
 	}
 
 	// Display
-		var elem = document.getElementById('currentWord');
-		elem.innerText = letters;   
+	var elem = document.getElementById('currentWord');
+	elem.innerText = letters;   
+
+	// Play sound
+	var audio = document.getElementById('music');
+	audio.play();
+	//audio.loop = true;
+
 };
 
 document.onkeyup = function(event) {
@@ -85,7 +106,7 @@ document.onkeyup = function(event) {
 		letters += currentWord[i];
 	}
 
-	// Display
+	// Display texts
 	var elem = document.getElementById('currentWord');
 	elem.innerText = letters;   
 
@@ -108,11 +129,33 @@ document.onkeyup = function(event) {
 		var elem = document.getElementById('numOfWins');
 		elem.innerText = String(numOfWins); 
 
+		// Change image
 		document.getElementById("ansImg").src = img[num].src;
 		console.log('num:' + num)
 
+		// Display subject
 		var elem = document.getElementById('ansSubject');
 		elem.innerText = ans_subject[num]; 
+
+		// Play sound
+		var audio = document.getElementById('music');
+		console.log(m4a[num]);
+		audio.pause();
+		audio.currentTime = 0;
+		//audio.stop();
+
+		//var source = document.getElementById('sound');
+		//source.src = m4a[num].src;
+		//console.log(source.src);
+		//audio.source = m4a[num].src;
+		//audio.play();
+
+		if (num > 0){
+			m4a[num-1].pause();
+			m4a[num-1].currentTime = 0;
+		}
+		m4a[num].play();
+		//audio.loop = true;
 
 		endFlg = true;
 	}
@@ -160,7 +203,7 @@ document.onkeyup = function(event) {
 		}
 		else {
 			var elem = document.getElementById('ansSubject');
-			elem.innerText = "End of Game"; 
+			elem.innerText = "Game End"; 
 		}
 	}	
 };
